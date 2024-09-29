@@ -23,13 +23,20 @@ class ProcessedOrders():
 
     item = {}
 
-    for items in self.data:
-      foodName = items["name"]
-      price = items['price']
+    for order in self.data:
 
-      if foodName not in item:
-        item[foodName] = {"price": price, "orders": 1}
-      else:
-        items[foodName]["orders"] += 1
+      for items in order["items"]:      
+        foodName = items["name"]
+        price = items["price"]
+
+        if foodName not in item:
+          item[foodName] = {"price": price, "orders": 1}
+        else:
+          item[foodName]["orders"] += 1
+      with open('items.json', 'w') as itemsFile:
+        json.dump(item, itemsFile, indent=4)
 
 
+process = ProcessedOrders('example_orders.json')
+process.customerInfo()
+process.itemCount()
