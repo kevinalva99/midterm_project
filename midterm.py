@@ -1,4 +1,5 @@
 import json
+import argparse
 
 class ProcessedOrders():
   def __init__(self, file):
@@ -37,6 +38,24 @@ class ProcessedOrders():
         json.dump(item, itemsFile, indent=4)
 
 
-process = ProcessedOrders('example_orders.json')
-process.customerInfo()
-process.itemCount()
+def main():
+
+  parser = argparse.ArgumentParser(
+    description="Process oders from Example_orders to generate customer and item data"
+  )
+
+  parser.add_argument(
+    "input_file",
+    type=str,
+    help="is the JSON file containing the order data. Type: python midterm.py input_file"
+  )
+
+  args = parser.parse_args()
+  orders = ProcessedOrders(args.input_file)
+
+  orders.customerInfo()
+  orders.itemCount()
+
+if __name__== "__main__":
+  main()
+
