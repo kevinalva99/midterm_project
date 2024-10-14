@@ -41,7 +41,7 @@ class ProcessedOrders():
 def main():
 
   parser = argparse.ArgumentParser(
-    description="Process oders from Example_orders to generate customer and item data"
+    description="Process oders from example_orders.json to generate customer and item data"
   )
 
   parser.add_argument(
