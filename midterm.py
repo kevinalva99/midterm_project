@@ -12,13 +12,13 @@ class ProcessedOrders():
 
     for information in self.data:
       name = information["name"]
-      phoneNumber = information["phone"]
+      phone_number = information["phone"]
 
-      if phoneNumber not in customer:
-        customer[phoneNumber] = name
+      if phone_number not in customer:
+        customer[phone_number] = name
 
-    with open('customer.json', 'w') as customerFile:
-      json.dump(customer, customerFile, indent=4)
+    with open('customer.json', 'w') as customer_file:
+      json.dump(customer, customer_file, indent=4)
   
   def itemCount(self):
 
@@ -27,18 +27,18 @@ class ProcessedOrders():
     for order in self.data:
 
       for items in order["items"]:      
-        foodName = items["name"]
+        food_name = items["name"]
         price = items["price"]
 
-        if foodName not in item:
-          item[foodName] = {"price": price, "orders": 1}
+        if food_name not in item:
+          item[food_name] = {"price": price, "orders": 1}
         else:
-          item[foodName]["orders"] += 1
-      with open('items.json', 'w') as itemsFile:
-        json.dump(item, itemsFile, indent=4)
+          item[food_name]["orders"] += 1
+      with open('items.json', 'w') as items_file:
+        json.dump(item, items_file, indent=4)
 
 
-def main():
+def Main():
 
   parser = argparse.ArgumentParser(
     description="Process oders from example_orders.json to generate customer and item data"
@@ -57,5 +57,5 @@ def main():
   orders.itemCount()
 
 if __name__== "__main__":
-  main()
+  Main()
 
