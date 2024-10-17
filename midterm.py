@@ -6,7 +6,7 @@ class ProcessedOrders():
     with open(file) as filename:
       self.data = json.load(filename)
   
-  def customerInfo(self):
+  def customer_info(self):
 
     customer = {}
 
@@ -20,7 +20,7 @@ class ProcessedOrders():
     with open('customer.json', 'w') as customer_file:
       json.dump(customer, customer_file, indent=4)
   
-  def itemCount(self):
+  def item_count(self):
 
     item = {}
 
@@ -38,7 +38,7 @@ class ProcessedOrders():
         json.dump(item, items_file, indent=4)
 
 
-def Main():
+def main():
 
   parser = argparse.ArgumentParser(
     description="Process oders from example_orders.json to generate customer and item data"
@@ -53,9 +53,9 @@ def Main():
   args = parser.parse_args()
   orders = ProcessedOrders(args.input_file)
 
-  orders.customerInfo()
-  orders.itemCount()
+  orders.customer_info()
+  orders.item_count()
 
 if __name__== "__main__":
-  Main()
+  main()
 
